@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DALTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DAL" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DALContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FilmSet" EntityType="DAL.Film" />
+          <EntitySet Name="GebruikerSet" EntityType="DAL.Gebruiker" />
+          <EntitySet Name="RegisseurSet" EntityType="DAL.Regisseur" />
+          <EntitySet Name="ReviewSet" EntityType="DAL.Review" />
+          <EntitySet Name="RolSet" EntityType="DAL.Rol" />
+          <EntitySet Name="ActeurSet" EntityType="DAL.Acteur" />
+        </EntityContainer>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="FilmID" />
+          </Key>
+          <Property Name="FilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMDBnummer" Type="String" Nullable="false" />
+          <Property Name="Naam" Type="String" Nullable="false" />
+          <Property Name="AndereNaam" Type="String" Nullable="false" />
+          <Property Name="Versie" Type="String" Nullable="false" />
+          <Property Name="AantalDisks" Type="String" Nullable="false" />
+          <Property Name="Jaar" Type="String" Nullable="false" />
+          <Property Name="Land" Type="String" Nullable="false" />
+          <Property Name="Speelduur" Type="String" Nullable="false" />
+          <Property Name="Kijkwijzer" Type="String" Nullable="false" />
+          <Property Name="Gezien" Type="String" Nullable="false" />
+          <Property Name="Wenslijst" Type="String" Nullable="false" />
+          <Property Name="InBezit" Type="String" Nullable="false" />
+          <Property Name="Kleur" Type="String" Nullable="false" />
+          <Property Name="ZW" Type="String" Nullable="false" />
+          <Property Name="KleurZW" Type="String" Nullable="false" />
+          <Property Name="Toegevoegd" Type="String" Nullable="false" />
+          <Property Name="Serie" Type="String" Nullable="false" />
+          <Property Name="DrieD" Type="String" Nullable="false" />
+          <Property Name="Verhaal" Type="String" Nullable="false" />
+          <Property Name="IMDBRate" Type="String" Nullable="false" />
+          <Property Name="PersRate" Type="String" Nullable="false" />
+          <Property Name="Afbeelding" Type="String" Nullable="false" />
+          <Property Name="KijkwijzerKlasse" Type="String" Nullable="false" />
+          <Property Name="Taalnaam" Type="String" Nullable="false" />
+          <Property Name="GenreNaam" Type="String" Nullable="false" />
+          <Property Name="RegID" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gebruiker">
+          <Key>
+            <PropertyRef Name="GebruikerID" />
+          </Key>
+          <Property Name="GebruikerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regisseur">
+          <Key>
+            <PropertyRef Name="RegID" />
+          </Key>
+          <Property Name="RegID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilmID" Type="String" Nullable="false" />
+          <Property Name="ReviewTekst" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rolnaam" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Acteur">
+          <Key>
+            <PropertyRef Name="ActeurID" />
+          </Key>
+          <Property Name="ActeurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" />
+          <Property Name="Bio" Type="String" Nullable="false" />
+          <Property Name="GebDatum" Type="String" Nullable="false" />
+          <Property Name="GebPlaats" Type="String" Nullable="false" />
+          <Property Name="Filmography" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DAL" />
+        <Alias Key="Target" Value="DAL.Store" />
+        <EntityContainerMapping CdmEntityContainer="DALContainer" StorageEntityContainer="DALTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

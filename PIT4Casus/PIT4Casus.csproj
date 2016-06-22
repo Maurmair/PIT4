@@ -112,7 +112,6 @@
     </Compile>
     <Compile Include="toplist.aspx.cs">
       <DependentUpon>toplist.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="toplist.aspx.designer.cs">
       <DependentUpon>toplist.aspx</DependentUpon>
@@ -134,9 +133,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CC\CC.csproj">
-      <Project>{c6a58a24-0c96-433e-adc5-0ab7bbefdd2f}</Project>
-      <Name>CC</Name>
+    <ProjectReference Include="..\CU\CU.csproj">
+      <Project>{6c616a7a-6b10-4583-bcfb-6a3819669223}</Project>
+      <Name>CU</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
