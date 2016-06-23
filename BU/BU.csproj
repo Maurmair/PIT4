@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -41,13 +50,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acteur.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="DAL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DAL.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Film.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gebruiker.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regisseur.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Review.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rol.cs">
+      <DependentUpon>DAL.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DAL.edmx">
@@ -57,9 +94,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="DAL.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DAL.Context.cs</LastGenOutput>
+      <DependentUpon>DAL.edmx</DependentUpon>
+    </None>
     <None Include="DAL.edmx.diagram">
       <DependentUpon>DAL.edmx</DependentUpon>
     </None>
+    <None Include="DAL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DAL.cs</LastGenOutput>
+      <DependentUpon>DAL.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

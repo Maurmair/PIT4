@@ -4,11 +4,180 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="DALTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="DAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DALStoreContainer">
+    <EntitySet Name="FilmSet" EntityType="DAL.Store.FilmSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GebruikerSet" EntityType="DAL.Store.GebruikerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RegisseurSet" EntityType="DAL.Store.RegisseurSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReviewSet" EntityType="DAL.Store.ReviewSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolSet" EntityType="DAL.Store.RolSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActeurSet" EntityType="DAL.Store.ActeurSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActeurFilm" EntityType="DAL.Store.ActeurFilm" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="RegisseurFilm" Association="DAL.Store.RegisseurFilm">
+      <End Role="Regisseur" EntitySet="RegisseurSet" />
+      <End Role="Film" EntitySet="FilmSet" />
+    </AssociationSet>
+    <AssociationSet Name="RolActeur" Association="DAL.Store.RolActeur">
+      <End Role="Rol" EntitySet="RolSet" />
+      <End Role="Acteur" EntitySet="ActeurSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActeurFilm_Acteur" Association="DAL.Store.FK_ActeurFilm_Acteur">
+      <End Role="Acteur" EntitySet="ActeurSet" />
+      <End Role="ActeurFilm" EntitySet="ActeurFilm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActeurFilm_Film" Association="DAL.Store.FK_ActeurFilm_Film">
+      <End Role="Film" EntitySet="FilmSet" />
+      <End Role="ActeurFilm" EntitySet="ActeurFilm" />
+    </AssociationSet>
+    <AssociationSet Name="GebruikerReview" Association="DAL.Store.GebruikerReview">
+      <End Role="Gebruiker" EntitySet="GebruikerSet" />
+      <End Role="Review" EntitySet="ReviewSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FilmSet">
+    <Key>
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMDBnummer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AndereNaam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Versie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AantalDisks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Jaar" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Land" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Speelduur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kijkwijzer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gezien" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Wenslijst" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InBezit" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kleur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZW" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KleurZW" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Toegevoegd" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Serie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DrieD" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Verhaal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IMDBRate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersRate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Afbeelding" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KijkwijzerKlasse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Taalnaam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GenreNaam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RegisseurRegID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GebruikerSet">
+    <Key>
+      <PropertyRef Name="GebruikerID" />
+    </Key>
+    <Property Name="GebruikerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegisseurSet">
+    <Key>
+      <PropertyRef Name="RegID" />
+    </Key>
+    <Property Name="RegID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewSet">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FilmID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReviewTekst" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GebruikerGebruikerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolSet">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rolnaam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActeurActeurID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActeurSet">
+    <Key>
+      <PropertyRef Name="ActeurID" />
+    </Key>
+    <Property Name="ActeurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GebDatum" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GebPlaats" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Filmography" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActeurFilm">
+    <Key>
+      <PropertyRef Name="Acteur_ActeurID" />
+      <PropertyRef Name="Film_FilmID" />
+    </Key>
+    <Property Name="Acteur_ActeurID" Type="int" Nullable="false" />
+    <Property Name="Film_FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="RegisseurFilm">
+    <End Role="Regisseur" Type="DAL.Store.RegisseurSet" Multiplicity="1" />
+    <End Role="Film" Type="DAL.Store.FilmSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Regisseur">
+        <PropertyRef Name="RegID" />
+      </Principal>
+      <Dependent Role="Film">
+        <PropertyRef Name="RegisseurRegID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolActeur">
+    <End Role="Rol" Type="DAL.Store.RolSet" Multiplicity="*" />
+    <End Role="Acteur" Type="DAL.Store.ActeurSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Acteur">
+        <PropertyRef Name="ActeurID" />
+      </Principal>
+      <Dependent Role="Rol">
+        <PropertyRef Name="ActeurActeurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GebruikerReview">
+    <End Role="Gebruiker" Type="DAL.Store.GebruikerSet" Multiplicity="1" />
+    <End Role="Review" Type="DAL.Store.ReviewSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gebruiker">
+        <PropertyRef Name="GebruikerID" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="GebruikerGebruikerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActeurFilm_Acteur">
+    <End Role="Acteur" Type="DAL.Store.ActeurSet" Multiplicity="1" />
+    <End Role="ActeurFilm" Type="DAL.Store.ActeurFilm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acteur">
+        <PropertyRef Name="ActeurID" />
+      </Principal>
+      <Dependent Role="ActeurFilm">
+        <PropertyRef Name="Acteur_ActeurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActeurFilm_Film">
+    <End Role="ActeurFilm" Type="DAL.Store.ActeurFilm" Multiplicity="*" />
+    <End Role="Film" Type="DAL.Store.FilmSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="ActeurFilm">
+        <PropertyRef Name="Film_FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DAL" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -19,6 +188,22 @@
           <EntitySet Name="ReviewSet" EntityType="DAL.Review" />
           <EntitySet Name="RolSet" EntityType="DAL.Rol" />
           <EntitySet Name="ActeurSet" EntityType="DAL.Acteur" />
+          <AssociationSet Name="RegisseurFilm" Association="DAL.RegisseurFilm">
+            <End Role="Regisseur" EntitySet="RegisseurSet" />
+            <End Role="Film" EntitySet="FilmSet" />
+          </AssociationSet>
+          <AssociationSet Name="RolActeur" Association="DAL.RolActeur">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="Acteur" EntitySet="ActeurSet" />
+          </AssociationSet>
+          <AssociationSet Name="ActeurFilm" Association="DAL.ActeurFilm">
+            <End Role="Acteur" EntitySet="ActeurSet" />
+            <End Role="Film" EntitySet="FilmSet" />
+          </AssociationSet>
+          <AssociationSet Name="GebruikerReview" Association="DAL.GebruikerReview">
+            <End Role="Gebruiker" EntitySet="GebruikerSet" />
+            <End Role="Review" EntitySet="ReviewSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Film">
           <Key>
@@ -50,7 +235,9 @@
           <Property Name="KijkwijzerKlasse" Type="String" Nullable="false" />
           <Property Name="Taalnaam" Type="String" Nullable="false" />
           <Property Name="GenreNaam" Type="String" Nullable="false" />
-          <Property Name="RegID" Type="String" Nullable="false" />
+          <NavigationProperty Name="Regisseur" Relationship="DAL.RegisseurFilm" FromRole="Film" ToRole="Regisseur" />
+          <Property Name="RegisseurRegID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Acteur" Relationship="DAL.ActeurFilm" FromRole="Film" ToRole="Acteur" />
         </EntityType>
         <EntityType Name="Gebruiker">
           <Key>
@@ -59,6 +246,7 @@
           <Property Name="GebruikerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Review" Relationship="DAL.GebruikerReview" FromRole="Gebruiker" ToRole="Review" />
         </EntityType>
         <EntityType Name="Regisseur">
           <Key>
@@ -66,6 +254,7 @@
           </Key>
           <Property Name="RegID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naam" Type="String" Nullable="false" />
+          <NavigationProperty Name="Film" Relationship="DAL.RegisseurFilm" FromRole="Regisseur" ToRole="Film" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -74,6 +263,8 @@
           <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FilmID" Type="String" Nullable="false" />
           <Property Name="ReviewTekst" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gebruiker" Relationship="DAL.GebruikerReview" FromRole="Review" ToRole="Gebruiker" />
+          <Property Name="GebruikerGebruikerID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -81,6 +272,8 @@
           </Key>
           <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Rolnaam" Type="String" Nullable="false" />
+          <NavigationProperty Name="Acteur" Relationship="DAL.RolActeur" FromRole="Rol" ToRole="Acteur" />
+          <Property Name="ActeurActeurID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Acteur">
           <Key>
@@ -92,18 +285,146 @@
           <Property Name="GebDatum" Type="String" Nullable="false" />
           <Property Name="GebPlaats" Type="String" Nullable="false" />
           <Property Name="Filmography" Type="String" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="DAL.RolActeur" FromRole="Acteur" ToRole="Rol" />
+          <NavigationProperty Name="Film" Relationship="DAL.ActeurFilm" FromRole="Acteur" ToRole="Film" />
         </EntityType>
+        <Association Name="RegisseurFilm">
+          <End Type="DAL.Regisseur" Role="Regisseur" Multiplicity="1" />
+          <End Type="DAL.Film" Role="Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regisseur">
+              <PropertyRef Name="RegID" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="RegisseurRegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolActeur">
+          <End Type="DAL.Rol" Role="Rol" Multiplicity="*" />
+          <End Type="DAL.Acteur" Role="Acteur" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Acteur">
+              <PropertyRef Name="ActeurID" />
+            </Principal>
+            <Dependent Role="Rol">
+              <PropertyRef Name="ActeurActeurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActeurFilm">
+          <End Type="DAL.Acteur" Role="Acteur" Multiplicity="*" />
+          <End Type="DAL.Film" Role="Film" Multiplicity="*" />
+        </Association>
+        <Association Name="GebruikerReview">
+          <End Type="DAL.Gebruiker" Role="Gebruiker" Multiplicity="1" />
+          <End Type="DAL.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gebruiker">
+              <PropertyRef Name="GebruikerID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="GebruikerGebruikerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="DAL" />
-        <Alias Key="Target" Value="DAL.Store" />
-        <EntityContainerMapping CdmEntityContainer="DALContainer" StorageEntityContainer="DALTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DALStoreContainer" CdmEntityContainer="DALContainer">
+    <EntitySetMapping Name="FilmSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Film)">
+        <MappingFragment StoreEntitySet="FilmSet">
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+          <ScalarProperty Name="IMDBnummer" ColumnName="IMDBnummer" />
+          <ScalarProperty Name="Naam" ColumnName="Naam" />
+          <ScalarProperty Name="AndereNaam" ColumnName="AndereNaam" />
+          <ScalarProperty Name="Versie" ColumnName="Versie" />
+          <ScalarProperty Name="AantalDisks" ColumnName="AantalDisks" />
+          <ScalarProperty Name="Jaar" ColumnName="Jaar" />
+          <ScalarProperty Name="Land" ColumnName="Land" />
+          <ScalarProperty Name="Speelduur" ColumnName="Speelduur" />
+          <ScalarProperty Name="Kijkwijzer" ColumnName="Kijkwijzer" />
+          <ScalarProperty Name="Gezien" ColumnName="Gezien" />
+          <ScalarProperty Name="Wenslijst" ColumnName="Wenslijst" />
+          <ScalarProperty Name="InBezit" ColumnName="InBezit" />
+          <ScalarProperty Name="Kleur" ColumnName="Kleur" />
+          <ScalarProperty Name="ZW" ColumnName="ZW" />
+          <ScalarProperty Name="KleurZW" ColumnName="KleurZW" />
+          <ScalarProperty Name="Toegevoegd" ColumnName="Toegevoegd" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="DrieD" ColumnName="DrieD" />
+          <ScalarProperty Name="Verhaal" ColumnName="Verhaal" />
+          <ScalarProperty Name="IMDBRate" ColumnName="IMDBRate" />
+          <ScalarProperty Name="PersRate" ColumnName="PersRate" />
+          <ScalarProperty Name="Afbeelding" ColumnName="Afbeelding" />
+          <ScalarProperty Name="KijkwijzerKlasse" ColumnName="KijkwijzerKlasse" />
+          <ScalarProperty Name="Taalnaam" ColumnName="Taalnaam" />
+          <ScalarProperty Name="GenreNaam" ColumnName="GenreNaam" />
+          <ScalarProperty Name="RegisseurRegID" ColumnName="RegisseurRegID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GebruikerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Gebruiker)">
+        <MappingFragment StoreEntitySet="GebruikerSet">
+          <ScalarProperty Name="GebruikerID" ColumnName="GebruikerID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisseurSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Regisseur)">
+        <MappingFragment StoreEntitySet="RegisseurSet">
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+          <ScalarProperty Name="Naam" ColumnName="Naam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Review)">
+        <MappingFragment StoreEntitySet="ReviewSet">
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+          <ScalarProperty Name="ReviewTekst" ColumnName="ReviewTekst" />
+          <ScalarProperty Name="GebruikerGebruikerID" ColumnName="GebruikerGebruikerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Rol)">
+        <MappingFragment StoreEntitySet="RolSet">
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="Rolnaam" ColumnName="Rolnaam" />
+          <ScalarProperty Name="ActeurActeurID" ColumnName="ActeurActeurID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActeurSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DAL.Acteur)">
+        <MappingFragment StoreEntitySet="ActeurSet">
+          <ScalarProperty Name="ActeurID" ColumnName="ActeurID" />
+          <ScalarProperty Name="Naam" ColumnName="Naam" />
+          <ScalarProperty Name="Bio" ColumnName="Bio" />
+          <ScalarProperty Name="GebDatum" ColumnName="GebDatum" />
+          <ScalarProperty Name="GebPlaats" ColumnName="GebPlaats" />
+          <ScalarProperty Name="Filmography" ColumnName="Filmography" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ActeurFilm" TypeName="DAL.ActeurFilm" StoreEntitySet="ActeurFilm">
+      <EndProperty Name="Acteur">
+        <ScalarProperty Name="ActeurID" ColumnName="Acteur_ActeurID" />
+      </EndProperty>
+      <EndProperty Name="Film">
+        <ScalarProperty Name="FilmID" ColumnName="Film_FilmID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -117,6 +438,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

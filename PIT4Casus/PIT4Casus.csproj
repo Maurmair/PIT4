@@ -65,9 +65,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenreList.aspx" />
-    <Content Include="Login.aspx" />
-    <Content Include="toplist.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -96,26 +93,6 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenreList.aspx.cs">
-      <DependentUpon>GenreList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GenreList.aspx.designer.cs">
-      <DependentUpon>GenreList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="toplist.aspx.cs">
-      <DependentUpon>toplist.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="toplist.aspx.designer.cs">
-      <DependentUpon>toplist.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

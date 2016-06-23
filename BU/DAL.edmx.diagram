@@ -4,13 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5712a2a1c2a145bcb4ded28954c78116" Name="Diagram1" >
+      <Diagram DiagramId="5712a2a1c2a145bcb4ded28954c78116" Name="Diagram1" ZoomLevel="121" >
         <EntityTypeShape EntityType="DAL.Film" Width="1.5" PointX="0.5" PointY="0.5" />
         <EntityTypeShape EntityType="DAL.Gebruiker" Width="1.5" PointX="2.375" PointY="0.5" />
         <EntityTypeShape EntityType="DAL.Regisseur" Width="1.5" PointX="4.5" PointY="0.5" />
         <EntityTypeShape EntityType="DAL.Review" Width="1.5" PointX="6.25" PointY="0.5" />
         <EntityTypeShape EntityType="DAL.Rol" Width="1.5" PointX="4.5" PointY="2.625" />
         <EntityTypeShape EntityType="DAL.Acteur" Width="1.5" PointX="2.5" PointY="2.625" />
+        <AssociationConnector Association="DAL.RegisseurFilm" />
+        <AssociationConnector Association="DAL.RolActeur" />
+        <AssociationConnector Association="DAL.ActeurFilm" />
+        <AssociationConnector Association="DAL.GebruikerReview" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
